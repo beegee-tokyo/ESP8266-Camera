@@ -1,0 +1,43 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+DEVICE_ID	.\src\globals.h	10;"	d
+DEVICE_ID	.\src\globals.h	7;"	d
+NODEMCUBOARD	.\src\Setup.h	22;"	d
+OTA_HOST	.\src\globals.h	11;"	d
+OTA_HOST	.\src\globals.h	8;"	d
+Setup_h	.\src\Setup.h	2;"	d
+blinkLED	.\src\declarations.h	/^int blinkLED = 4;$/;"	v
+blocksBeforeWrite	.\src\Camera.cpp	105;"	d	file:
+bufSizeFTP	.\src\Camera.cpp	104;"	d	file:
+cam	.\src\declarations.h	/^Adafruit_VC0706 cam = Adafruit_VC0706(&cameraconnection);$/;"	v
+cameraconnection	.\src\declarations.h	/^SoftwareSerial cameraconnection = SoftwareSerial(14, 12);$/;"	v
+compileDate	.\src\declarations.h	/^const char compileDate[] = __DATE__ " " __TIME__;$/;"	v
+debugOn	.\src\declarations.h	/^bool debugOn = false;$/;"	v
+flashLED	.\src\declarations.h	/^int flashLED = 5;$/;"	v
+ftpBuf	.\src\declarations.h	/^char ftpBuf[128];$/;"	v
+ftpClient	.\src\declarations.h	/^WiFiClient ftpClient;$/;"	v
+ftpConnect	.\src\Ftp.cpp	/^bool ftpConnect() {$/;"	f
+ftpCount	.\src\declarations.h	/^char ftpCount;$/;"	v
+ftpDataClient	.\src\declarations.h	/^WiFiClient ftpDataClient;$/;"	v
+ftpDataPort	.\src\declarations.h	/^uint16_t ftpDataPort = 21;$/;"	v
+ftpReceive	.\src\Ftp.cpp	/^byte ftpReceive() {$/;"	f
+ftpSrv	.\src\declarations.h	/^FtpServer ftpSrv;$/;"	v
+hasCamera	.\src\declarations.h	/^boolean hasCamera = true;$/;"	v
+inSetup	.\src\declarations.h	/^boolean inSetup = true;$/;"	v
+ipAddr	.\src\declarations.h	/^	IPAddress ipAddr = ipCam1;$/;"	v
+ipAddr	.\src\declarations.h	/^	IPAddress ipAddr = ipSpare4;$/;"	v
+lastSyncTime	.\src\declarations.h	/^time_t lastSyncTime;$/;"	v
+liveCnt	.\src\Main.cpp	/^long liveCnt = 0;$/;"	v
+loop	.\src\Main.cpp	/^void loop() {$/;"	f
+otaRunning	.\src\declarations.h	/^boolean otaRunning = false;$/;"	v
+outBuf	.\src\Camera.cpp	/^char outBuf[128];$/;"	v
+outCount	.\src\Camera.cpp	/^char outCount;$/;"	v
+sendBroadCast	.\src\LanSubs.cpp	/^void sendBroadCast(boolean shotResult) {$/;"	f
+setup	.\src\Setup.cpp	/^void setup() {$/;"	f
+socketServer	.\src\LanSubs.cpp	/^void socketServer(WiFiClient tcpClient) {$/;"	f
+takeShot	.\src\Camera.cpp	/^boolean takeShot() {$/;"	f
+udpClientServer	.\src\LanSubs.cpp	/^WiFiUDP udpClientServer;$/;"	v
