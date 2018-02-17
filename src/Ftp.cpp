@@ -59,7 +59,7 @@ bool ftpConnect() {
     return false;
   }
   // Send user name
-  ftpClient.println("USER beegee");
+  ftpClient.println(ftpUser);
   // Check result
   if (!ftpReceive()) {
 		if (debugOn) {
@@ -70,7 +70,7 @@ bool ftpConnect() {
     return false;
   }
   // Send password
-  ftpClient.println("PASS teresa1963");
+  ftpClient.println(ftpPwd);
   // Check result
   if (!ftpReceive()) {
 		if (debugOn) {

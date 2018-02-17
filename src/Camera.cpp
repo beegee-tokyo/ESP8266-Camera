@@ -138,7 +138,6 @@ boolean takeShot() {
 			jpglen = imgFile.size();
 			uint32_t bytesReadFS = 0;
 			#define bufSizeFTP 1440 // depends on available space
-			// #define blocksBeforeWrite 50 //45 // bufSizeFTP/32
 			uint8_t clientBuf[bufSizeFTP];
 			// size_t clientCount = 0;
 			uint32_t bytesWrittenFTP = 0;

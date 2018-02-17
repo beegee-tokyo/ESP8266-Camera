@@ -9,7 +9,6 @@
 #include <ArduinoJson.h>
 #include <WiFiClient.h>
 #include <FS.h>
-#include <ESP8266FtpServer.h>
 #include <TimeLib.h>
 
 #include <DNSServer.h>

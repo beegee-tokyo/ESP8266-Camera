@@ -38,9 +38,10 @@ void sendBroadCast(boolean shotResult) {
 	} else {
 		root["pi"] = 0;
 	}
-	// Broadcast per UTP to LAN
+	// Convert JSON object into a string
 	String broadCast;
 	root.printTo(broadCast);
+	// Broadcast per UDP to LAN
 	if (udpClientServer.beginPacketMulticast(multiIP, udpBcPort, ipAddr) == 0) {
 		wmIsConnected = false;
 	} else {
@@ -84,7 +85,7 @@ void socketServer(WiFiClient tcpClient) {
 		if (tcpClient.available()) {
 			rcvd[index] = tcpClient.read();
 			index++;
-			if (index >= 21) break; // prevent buffer overflow
+			if (index >= 128) break; // prevent buffer overflow
 		}
 		if (now() > timeoutStart + 3000) { // Wait a maximum of 3 seconds
 			break; // End the while loop because of timeout
@@ -92,16 +93,14 @@ void socketServer(WiFiClient tcpClient) {
 	}
 	rcvd[index] = 0;
 
-	// tcpClient.flush();
-	// tcpClient.stop();
+	tcpClient.flush();
+	tcpClient.stop();
 
 	// Copy received buffer into a string for easier handling
 	String req(rcvd);
 
 	if (req.length() < 1) { // No data received
 		comLedFlashStop();
-		tcpClient.flush();
-		tcpClient.stop();
 		return;
 	}
 
@@ -220,8 +219,6 @@ void socketServer(WiFiClient tcpClient) {
 		// Reset device
 	} else if (req.substring(0, 1) == "x") {
 		sendRpiDebug("Reset device", OTA_HOST);
-		tcpClient.flush();
-		tcpClient.stop();
 		// Reset the ESP
 		delay(3000);
 		ESP.reset();
@@ -231,6 +228,4 @@ void socketServer(WiFiClient tcpClient) {
 		formatSPIFFS(OTA_HOST);
 	}
 	comLedFlashStop();
-	tcpClient.flush();
-	tcpClient.stop();
 }
