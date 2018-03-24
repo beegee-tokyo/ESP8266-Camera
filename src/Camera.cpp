@@ -12,6 +12,7 @@ boolean takeShot() {
 	if (debugOn) {
 		sendRpiDebug("takeShot started", OTA_HOST);
 	}
+	comLedFlashStop();
 	comLedFlashStart(0.1);
 	digitalWrite(flashLED, HIGH);
 	wdt_reset();
@@ -71,9 +72,6 @@ boolean takeShot() {
 		return false; // Without a file there is nothing to do here
 	}
 
-	// Switch off the flash light
-	digitalWrite(flashLED, LOW);
-
 	uint32_t bytesWrittenFS = 0;
 
 	// Read all the data up to jpglen # bytes!
@@ -108,6 +106,9 @@ boolean takeShot() {
 			jpglen -= bytesToRead;
 		}
 	}
+
+	// Switch off the flash light
+	digitalWrite(flashLED, LOW);
 
 	if (fileOpen) {
 		wdt_reset();
@@ -167,8 +168,6 @@ boolean takeShot() {
 					ftpDataClient.stop();
 					ftpClient.stop();
 					ftpConnected = false;
-					// Maybe we lost WiFi connection!
-					wmIsConnected = false;
 				} else {
 					ftpClient.print(F("STOR "));
 					ftpClient.println(filename);
@@ -180,8 +179,6 @@ boolean takeShot() {
 						ftpDataClient.stop();
 						ftpClient.stop();
 						ftpConnected = false;
-						// Maybe we lost WiFi connection!
-						wmIsConnected = false;
 					}
 				}
 			}
@@ -189,7 +186,8 @@ boolean takeShot() {
 			if (ftpConnected) {
 				startTime = millis();
 				// Get data from file and send to FTP
-				for (int blocks = 0; blocks < ((jpglen/1440)+1); blocks++) {
+				long size = imgFile.size();
+				for (int blocks = 0; blocks < ((size/1440)+1); blocks++) {
 					bytesReadFS = imgFile.read(clientBuf, 1440);
 					bytesWrittenFTP += ftpDataClient.write((const uint8_t *) clientBuf, bytesReadFS);
 					wdt_reset();
@@ -212,8 +210,6 @@ boolean takeShot() {
 				if (!ftpReceive()) {
 					debugMsg = "FTP: Disconnect failed: " + String(ftpBuf);
 					sendRpiDebug(debugMsg, OTA_HOST);
-					// Maybe we lost WiFi connection!
-					wmIsConnected = false;
 				}
 				if (debugOn) {
 					sendRpiDebug("STOP FTP", OTA_HOST);

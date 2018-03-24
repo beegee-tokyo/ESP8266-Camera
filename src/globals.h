@@ -1,15 +1,6 @@
 #include <ESP8266WiFi.h>
 
-/** Build time */
-extern const char compileDate[];
 
-// #ifdef BREADBOARD
-// 	#define DEVICE_ID "cmb" // ID for security cam
-// 	#define OTA_HOST "cmb" // Host name for OTA updates
-// #else
-// 	#define DEVICE_ID "cm1" // ID for security cam
-// 	#define OTA_HOST "cm1" // Host name for OTA updates
-// #endif
 /** Hostname & AP name created from device function & 1. and 4. to 6. part of MAC address */
 extern char hostApName[];
 /** Debug name created from last part of hostname */
@@ -19,6 +10,8 @@ extern IPAddress ipAddr;
 /** ID for monitor to be replaced by function in the future */
 #define DEVICE_ID "cm1"
 
+/** Build time */
+extern const char compileDate[];
 /** WiFiServer class to create TCP socket server on port tcpComPort */
 extern WiFiServer tcpServer;
 /** FTP client */
@@ -35,11 +28,9 @@ extern char ftpBuf[];
 /** Counter for sent/received data */
 extern char ftpCount;
 
-/** IP address of this module */
-extern IPAddress ipAddr;
 
-/** Flag for boot status */
-extern boolean inSetup;
+/** Bug capture trial year of last good NTP time received */
+extern int lastKnownYear;
 
 /** Flag for OTA update running */
 extern boolean otaRunning;
@@ -49,7 +40,8 @@ extern bool debugOn;
 extern time_t lastSyncTime;
 /** Flag if heart beat was triggered */
 extern boolean heartBeatTriggered;
-
+/** Timer for heart beat */
+extern Ticker heartBeatTimer;
 /** Flag for broadcast status & consumption */
 extern boolean sendUpdateTriggered;
 /** Flag for broadcast status */

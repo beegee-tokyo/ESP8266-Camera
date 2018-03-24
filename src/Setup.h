@@ -3,30 +3,27 @@
 
 #include <Arduino.h>
 #include <ArduinoOTA.h>
-#include <Ticker.h>
 #include <ESP8266WiFi.h>
-#include "ESP8266mDNS.h"
-#include <ArduinoJson.h>
+#include <ESP8266mDNS.h>
+#include <WiFiUdp.h>
 #include <WiFiClient.h>
+#include <Ticker.h>
+#include <pgmspace.h>
+#include <ArduinoJson.h>
 #include <FS.h>
 #include <TimeLib.h>
 
-#include <DNSServer.h>
-#include <WiFiManager.h>
-#include <ESP8266WebServer.h>
-
-#include <Adafruit_VC0706.h>
 #include <SoftwareSerial.h>
+#include <Adafruit_VC0706.h>
 
 /* We are using NodeMCU board! */
 #define NODEMCUBOARD
 
 /* Common private libraries */
-#include <ntp.h>
-#include <leds.h>
-#include <wifi.h>
-#include <wifiAPinfo.h>
-#include <spiffs.h>
+#include <ntpLib.h>
+#include <ledLib.h>
+#include <wifiLib.h>
+#include <spiffsLib.h>
 
 /* globals.h contains defines and global variables */
 #include "globals.h"
