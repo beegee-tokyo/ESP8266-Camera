@@ -32,12 +32,6 @@ void loop() {
 			// Initialize OTA
 			initOTA();
 			
-			String debugMsg = "Reconnected to " + WiFi.SSID();
-			debugMsg += " " + digitalClockDisplay();
-			sendRpiDebug(debugMsg, OTA_HOST);
-			// We are connected, check if we need to do some initializations
-			// Start UDP listener
-			startListenToUDPbroadcast();
 			// Set initial time
 			if (!tryGetTime(debugOn)) {
 				tryGetTime(debugOn); // Failed to get time from NTP server, retry
@@ -47,6 +41,13 @@ void loop() {
 			} else {
 				lastKnownYear = 0;
 			}
+
+			String debugMsg = "Reconnected to " + WiFi.SSID();
+			debugMsg += " " + digitalClockDisplay();
+			sendRpiDebug(debugMsg, OTA_HOST);
+			// We are connected, check if we need to do some initializations
+			// Start UDP listener
+			startListenToUDPbroadcast();
 			// Start the tcp socket server to listen on port tcpComPort
 			tcpServer.begin();
 			// Send Security restart/reconnect message
